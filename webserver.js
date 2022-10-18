@@ -48,10 +48,18 @@ io.sockets.on('connection', function (socket) {// WebSocket Connection
 	  pythonProcess.stdout.on('data', function(data) {
 		   console.log('Pipe data from python script ...');
 		   data2 = data.toString();		  
-		   console.log("data2", data2);
-		   socket.emit('light', data2);
-        // res.send(data.toString());
-	  } )		   	 
+		   // console.log("data2", data2);
+		   // socket.emit('light', data2);
+	  } )	
+
+	  fs.readFile('output.txt', {encoding: 'utf-8'}, function(err,data2){
+		if (!err) {
+			console.log('received data: ' + data2);				
+			socket.emit('light', data2);
+		} else {
+			console.log(err);
+		}
+	  });	  
     }		  
   }); 
  	
