@@ -8,12 +8,24 @@ http.listen(80); //listen to port 8080
 console.log("Hello World!");
 
 function handler (req, res) { //create server
+  var blank = 0;
+  
   console.log("Server Created!");
   fs.readFile(__dirname + '/public/index.html', function(err, data) { //read file index.html in public folder
     if (err) {
       res.writeHead(404, {'Content-Type': 'text/html'}); //display 404 on error
       return res.end("404 Not Found");
     }
+	
+	fs.open('output.txt', 'w', function (err, f) {
+		if (err) throw err;
+		console.log('Saved!');
+		fs.writeFile('output.txt', blank, function (err, fd) {
+		if (err) throw err;
+		 //console.log('Saved!');
+		});			  
+	});
+			
     res.writeHead(200, {'Content-Type': 'text/html'}); //write HTML
 	
 	console.log("Writing data back");
@@ -27,7 +39,6 @@ function handler (req, res) { //create server
 io.sockets.on('connection', function (socket) {// WebSocket Connection  
   var lightvalue = 0; //static variable for current status
   var data2;
-  var blank = 0;
   
   socket.on('light', function(data) { //get light switch status from client
   	
@@ -57,16 +68,7 @@ io.sockets.on('connection', function (socket) {// WebSocket Connection
 		if (!err) {
 			console.log('received data: ' + data2);				
 			socket.emit('light', data2);
-			// fs.unlinkSync('output.txt');
-			
-			fs.open('output.txt', 'w', function (err, f) {
-			  if (err) throw err;
-			  console.log('Saved!');
-				fs.writeFile('output.txt', blank, function (err, fd) {
-				  if (err) throw err;
-				  //console.log('Saved!');
-				});			  
-			});
+			// fs.unlinkSync('output.txt');			
 		} else {
 			console.log(err);
 		}
