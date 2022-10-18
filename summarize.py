@@ -1,10 +1,11 @@
 # importing libraries
 import nltk
 
-nltk.download('all')
+#nltk.download('all')
 
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize, sent_tokenize
+
 
 # Input text - to summarize
 f = open("input.txt", encoding="utf8")

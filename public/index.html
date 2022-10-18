@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- #3DCD58 Light green -->
+<style>
+
+header h1{
+	background-color: #4CAF50;
+	color: white;
+	border-top: 3px solid #4CAF50;
+	border-bottom: 3px solid #4CAF50;
+	<!-- rgb(61,205,88)  -->
+}
+
+.footer {
+  <!-- position: fixed; -->
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  text-align: center;  
+}
+
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+  width:90px;
+  height:35px;
+  font-size:20px;
+}
+
+.button1 {border-radius: 30%;}
+
+.button2 {
+	border-radius: 30%;
+	background-color: white;
+	width:90px;	
+	height:35px;
+}
+
+
+</style>
+</head>
+<body style="margin:5;">
+
+<header>
+<h1 style="text-align:center">S &nbsp;  - &nbsp;  U &nbsp;  -  &nbsp; M &nbsp;  -  M &nbsp;  -  A &nbsp;  -  R &nbsp;  -  Y</h1>
+</header>
+
+
+</br>
+
+<center>
+<label style="color: #4CAF50;font-size:25px;"><b>Input </b></label>
+</br></br></br>
+<textarea id="area1" name="Text1" cols="60" rows="10"></textarea>
+</br></br></br>  
+<button id="buttOn1" class="button button1">Submit</button>
+</br></br></br>  
+<label style="color: #4CAF50;font-size:25px;"><b>Output </b></label>
+</br></br></br>
+<textarea id="area2" name="Text2" cols="60" rows="10"></textarea>
+
+
+<div class="footer"> 
+  <p>PGPpro2023</p>
+</div> 
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script> <!-- include socket.io client side script -->
+<script>
+var socket = io(); //load socket.io-client and connect to the host that serves the page
+window.addEventListener("load", function(){ //when page loads
+  
+  var buttbox1 = document.getElementById("buttOn1");
+  buttbox1.addEventListener("click", function() { 
+		console.log("On clicked");		
+		var text1 = document.getElementById('area1').value; 
+		<!-- console.log(text1);		 -->
+		socket.emit("light", text1); //send button status to server (as 1 or 0)
+  });  
+});
+
+socket.on('light', function (data) { 
+  console.log("light2 ", data);
+  document.getElementById('area2').value = data;
+});
+</script>
+
+</body>
+</html>
