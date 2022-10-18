@@ -27,6 +27,7 @@ function handler (req, res) { //create server
 io.sockets.on('connection', function (socket) {// WebSocket Connection  
   var lightvalue = 0; //static variable for current status
   var data2;
+  var blank = 0;
   
   socket.on('light', function(data) { //get light switch status from client
   	
@@ -56,11 +57,20 @@ io.sockets.on('connection', function (socket) {// WebSocket Connection
 		if (!err) {
 			console.log('received data: ' + data2);				
 			socket.emit('light', data2);
-			fs.unlinkSync('output.txt');
+			// fs.unlinkSync('output.txt');
+			
+			fs.open('output.txt', 'w', function (err, f) {
+			  console.log('Saved!');
+			});
+
+		    fs.writeFile('output.txt', blank, function (err, fd) {
+			  if (err) throw err;
+			  //console.log('Saved!');
+	        });
 		} else {
 			console.log(err);
 		}
-	  });	  
+	  });	 	
     }		  
   }); 
  	
