@@ -57,17 +57,17 @@ io.sockets.on('connection', function (socket) {// WebSocket Connection
 	    //console.log('Saved!');
 	});	  
 		
-	console.log("Python");
+	// console.log("Python");
 	
-	  var spawn = require("child_process").spawn;
-	  var pythonProcess = spawn('python3',["summarize.py"]);
+	  // var spawn = require("child_process").spawn;
+	  // var pythonProcess = spawn('python3',["summarize.py"]);
 	  
-	  pythonProcess.stdout.on('data', function(data) {
-		   console.log('Pipe data from python script ...');
-		   data2 = data.toString();		  
-		   // console.log("data2", data2);
-		   // socket.emit('light', data2);
-	  } )	
+	  // pythonProcess.stdout.on('data', function(data) {
+		   // console.log('Pipe data from python script ...');
+		   // data2 = data.toString();		  
+		   // // console.log("data2", data2);
+		   // // socket.emit('light', data2);
+	  // } )	
 
 	  fs.readFile('output.txt', {encoding: 'utf-8'}, function(err,data2){
 		if (!err) {
