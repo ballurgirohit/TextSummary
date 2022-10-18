@@ -8,7 +8,7 @@ http.listen(80); //listen to port 8080
 console.log("Hello World!");
 
 function handler (req, res) { //create server
-  var blank = 0;
+  var blank = "";
   
   console.log("Server Created!");
   fs.readFile(__dirname + '/public/index.html', function(err, data) { //read file index.html in public folder
@@ -21,10 +21,10 @@ function handler (req, res) { //create server
 		if (err) throw err;
 		console.log('Saved!');
 
-		fs.writeFile('output.txt', blank, function (err, fd) {
-		  if (err) throw err;
-		  //console.log('Saved!');
-		});
+		// fs.writeFile('output.txt', blank, function (err, fd) {
+		  // if (err) throw err;
+		  // //console.log('Saved!');
+		// });
 
 		fs.close(f, function (err){
 			
