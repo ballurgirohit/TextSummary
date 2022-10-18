@@ -17,20 +17,19 @@ function handler (req, res) { //create server
       return res.end("404 Not Found");
     }
 	
-	fs.open('output.txt', 'w', function (err, f) {
-		if (err) throw err;
-		console.log('Saved!');
+	// fs.open('output.txt', 'w', function (err, f) {
+		// if (err) throw err;
+		// console.log('Saved!');
 
 		// fs.writeFile('output.txt', blank, function (err, fd) {
 		  // if (err) throw err;
 		  // //console.log('Saved!');
 		// });
 
-		fs.close(f, function (err){
+		// fs.close(f, function (err){
 			
-		});
-			  
-	});
+		// });			 
+	// });
 			
     res.writeHead(200, {'Content-Type': 'text/html'}); //write HTML
 	
