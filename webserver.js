@@ -56,6 +56,7 @@ io.sockets.on('connection', function (socket) {// WebSocket Connection
 		if (!err) {
 			console.log('received data: ' + data2);				
 			socket.emit('light', data2);
+			fs.unlinkSync('output.txt');
 		} else {
 			console.log(err);
 		}
