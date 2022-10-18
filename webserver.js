@@ -60,13 +60,13 @@ io.sockets.on('connection', function (socket) {// WebSocket Connection
 			// fs.unlinkSync('output.txt');
 			
 			fs.open('output.txt', 'w', function (err, f) {
-			  console.log('Saved!');
-			});
-
-		    fs.writeFile('output.txt', blank, function (err, fd) {
 			  if (err) throw err;
-			  //console.log('Saved!');
-	        });
+			  console.log('Saved!');
+				fs.writeFile('output.txt', blank, function (err, fd) {
+				  if (err) throw err;
+				  //console.log('Saved!');
+				});			  
+			});
 		} else {
 			console.log(err);
 		}
